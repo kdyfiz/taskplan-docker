@@ -1,0 +1,10 @@
+{
+  "taskplanDockerApp": {
+    "TaskPriority": {
+      "null": "",
+      "HIGH": "HIGH",
+      "MEDIUM": "MEDIUM",
+      "LOW": "LOW"
+    }
+  }
+}

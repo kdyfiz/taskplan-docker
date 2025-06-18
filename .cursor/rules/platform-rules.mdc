@@ -1,0 +1,72 @@
+```json
+{
+  "name": "Daily Task Planner",
+  "description": "Guides the AI to understand and generate code for a Daily Task Planner application, focusing on core features like adding, editing, deleting, marking complete, and sorting tasks. Emphasizes a clean, intuitive UI and efficient data persistence.",
+  "triggers": [
+    {
+      "type": "file_extension",
+      "values": [".js", ".jsx", ".ts", ".tsx", ".py", ".java", ".html", ".css", ".sql", ".db"]
+    },
+    {
+      "type": "file_content",
+      "contains": ["task", "todo", "daily planner", "due date", "priority", "complete", "add task", "edit task", "delete task", "sort tasks", "task list"]
+    },
+    {
+      "type": "prompt_content",
+      "contains": ["daily task planner", "todo list", "task management", "add task", "edit task", "delete task", "mark complete", "sort tasks", "due date", "priority"]
+    }
+  ],
+  "actions": [
+    {
+      "type": "set_context",
+      "context": {
+        "domain": "Personal Task Management",
+        "purpose": "Planning and tracking daily tasks",
+        "features": [
+          "Adding Tasks with Description, Due Date, and Priority",
+          "Editing Existing Tasks",
+          "Deleting Tasks",
+          "Marking Tasks as Complete",
+          "Sorting Tasks by Due Date or Priority",
+          "Data Persistence (local storage or database)",
+          "Visual Indication of Task Status (e.g., strikethrough for completed)",
+          "Confirmation Dialogs for Deletion",
+          "Responsive UI for different screen sizes"
+        ],
+        "target_audience": "Individual users seeking to organize their daily tasks",
+        "ui_ux_guidelines": {
+          "design_system": "Use a clean and simple design system (e.g., Material Design, Bootstrap, or a custom minimalist design) that is easy to understand and use.",
+          "responsiveness": "Ensure the UI is responsive and adapts well to different screen sizes (desktop, tablet, mobile).",
+          "interactivity": "Incorporate interactive elements like date pickers, dropdowns for priority, and confirmation dialogs.",
+          "data_visualization": "No complex data visualization is required, but consider visual cues for task priority (e.g., color-coding).",
+          "accessibility": "Follow basic accessibility guidelines to ensure usability for all users.",
+          "user_flow": "Design a straightforward user flow for adding, editing, and deleting tasks. Minimize the number of steps required.",
+          "performance": "Optimize the UI for fast loading times and smooth performance, especially when dealing with a large number of tasks.",
+          "feedback": "Provide clear and immediate feedback to user actions (e.g., success messages, confirmation dialogs).",
+          "consistency": "Maintain consistent styling and behavior across all components.",
+          "modern_aesthetics": "Utilize a modern, clean, and uncluttered UI design."
+        },
+        "business_logic": {
+          "task_description_limit": "Task descriptions must be less than 255 characters.",
+          "deletion_confirmation": "Always display a confirmation prompt before deleting a task.",
+          "automatic_date_recording": "Task creation date is automatically recorded.",
+          "task_completion_visual_cue": "Completed tasks should be visually distinguished from incomplete tasks (e.g., strikethrough, different color).",
+          "task_sorting": "Tasks can be sorted in ascending or descending order by due date or priority."
+        },
+        "non_functional_requirements": {
+          "add_task_time": "Task should be added within 2 seconds.",
+          "edit_task_time": "Task should be updated within 2 seconds.",
+          "delete_task_time": "Task should be deleted within 1 second.",
+          "mark_complete_time": "Task status should be updated within 1 second.",
+          "sort_tasks_time": "Task list should be sorted within 2 seconds.",
+          "data_persistence": "Task data should be persisted even after the application is closed and reopened (e.g., using local storage or a database)."
+        }
+      }
+    },
+    {
+        "type":"add_instruction",
+        "instruction":"When generating UI code, prioritize a clean and intuitive design. Ensure responsiveness across different screen sizes. Implement interactive elements like date pickers and confirmation dialogs. Provide clear feedback to user actions. When generating backend code, focus on efficient data persistence and retrieval. Adhere to the specified business logic and non-functional requirements, especially regarding task description limits, deletion confirmation, and performance metrics."
+    }
+  ]
+}
+```

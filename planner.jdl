@@ -1,0 +1,23 @@
+entity Task {
+  description String required maxlength(255), // task description
+  dueDate LocalDate,                         // optional due date
+  priority TaskPriority,                     // optional priority
+  completed Boolean required,                // track completion status
+  createdDate Instant required,              // auto-set on creation
+  lastModifiedDate Instant                   // auto-update on edit
+}
+
+enum TaskPriority {
+  HIGH,
+  MEDIUM,
+  LOW
+}
+
+// Relationship: Task belongs to a User
+relationship ManyToOne {
+  Task{user(login)} to User with builtInEntity
+}
+
+// Service & Pagination
+service Task with serviceClass
+paginate Task with pagination
