@@ -3,14 +3,13 @@ import './app.scss';
 import 'app/config/dayjs';
 
 import React, { useEffect } from 'react';
-import { Card } from 'reactstrap';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getSession } from 'app/shared/reducers/authentication';
 import { getProfile } from 'app/shared/reducers/application-profile';
-import Header from 'app/shared/layout/header/header';
+import HeaderModern from 'app/shared/layout/header/header-modern';
 import Footer from 'app/shared/layout/footer/footer';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
@@ -34,13 +33,12 @@ export const App = () => {
   const isInProduction = useAppSelector(state => state.applicationProfile.inProduction);
   const isOpenAPIEnabled = useAppSelector(state => state.applicationProfile.isOpenAPIEnabled);
 
-  const paddingTop = '60px';
   return (
     <BrowserRouter basename={baseHref}>
-      <div className="app-container" style={{ paddingTop }}>
-        <ToastContainer position="top-left" className="toastify-container" toastClassName="toastify-toast" />
+      <div className="min-h-screen bg-background font-sans antialiased">
+        <ToastContainer position="top-right" className="toastify-container" toastClassName="toastify-toast" />
         <ErrorBoundary>
-          <Header
+          <HeaderModern
             isAuthenticated={isAuthenticated}
             isAdmin={isAdmin}
             currentLocale={currentLocale}
@@ -49,14 +47,14 @@ export const App = () => {
             isOpenAPIEnabled={isOpenAPIEnabled}
           />
         </ErrorBoundary>
-        <div className="container-fluid view-container" id="app-view-container">
-          <Card className="jh-card">
+        <main className="flex-1">
+          <div className="container mx-auto px-4 py-8">
             <ErrorBoundary>
               <AppRoutes />
             </ErrorBoundary>
-          </Card>
-          <Footer />
-        </div>
+          </div>
+        </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );

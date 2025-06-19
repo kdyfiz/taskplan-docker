@@ -1,9 +1,33 @@
 // Override Bootstrap variables
 @import 'bootstrap-variables';
 @import 'bootswatch/dist/flatly/variables';
+
+// Import Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Import Bootstrap source files from node_modules
 @import 'bootstrap/scss/bootstrap';
 @import 'bootswatch/dist/flatly/bootswatch';
+
+// Tailwind and modern utility classes
+@layer components {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
 body {
   margin: 0;
 }
@@ -41,6 +65,15 @@ a {
       }
     }
   }
+}
+
+// Modern card styles to complement Tailwind
+.jh-card {
+  @apply bg-card border-border;
+  border-radius: 0.625rem;
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
 .fullscreen {
