@@ -6,6 +6,8 @@ import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -53,6 +55,23 @@ public class Task implements Serializable {
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
+    @PrePersist
+    public void prePersist() {
+        // Set default values for required fields if they are null
+        if (this.description == null || this.description.trim().isEmpty()) {
+            this.description = "Task created on " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        }
+        if (this.completed == null) {
+            this.completed = false;
+        }
+        if (this.createdDate == null) {
+            this.createdDate = Instant.now();
+        }
+        if (this.lastModifiedDate == null) {
+            this.lastModifiedDate = Instant.now();
+        }
+    }
+
     public Long getId() {
         return this.id;
     }
@@ -76,7 +95,12 @@ public class Task implements Serializable {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        // Automatically set default if null or empty to prevent validation failures
+        if (description == null || description.trim().isEmpty()) {
+            this.description = "Task created on " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        } else {
+            this.description = description;
+        }
     }
 
     public LocalDate getDueDate() {
@@ -115,7 +139,12 @@ public class Task implements Serializable {
     }
 
     public void setCompleted(Boolean completed) {
-        this.completed = completed;
+        // Automatically set default if null to prevent validation failures
+        if (completed == null) {
+            this.completed = false;
+        } else {
+            this.completed = completed;
+        }
     }
 
     public Instant getCreatedDate() {
@@ -128,7 +157,12 @@ public class Task implements Serializable {
     }
 
     public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
+        // Automatically set default if null to prevent validation failures
+        if (createdDate == null) {
+            this.createdDate = Instant.now();
+        } else {
+            this.createdDate = createdDate;
+        }
     }
 
     public Instant getLastModifiedDate() {

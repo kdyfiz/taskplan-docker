@@ -8,6 +8,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -57,9 +60,11 @@ public class TaskResource {
     @PostMapping("")
     public ResponseEntity<Task> createTask(@Valid @RequestBody Task task) throws URISyntaxException {
         LOG.debug("REST request to save Task : {}", task);
+
         if (task.getId() != null) {
             throw new BadRequestAlertException("A new task cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
         task = taskService.save(task);
         return ResponseEntity.created(new URI("/api/tasks/" + task.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, task.getId().toString()))
@@ -89,6 +94,11 @@ public class TaskResource {
 
         if (!taskRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+
+        // Set lastModifiedDate only if not provided by client
+        if (task.getLastModifiedDate() == null) {
+            task.setLastModifiedDate(Instant.now());
         }
 
         task = taskService.update(task);
@@ -123,6 +133,11 @@ public class TaskResource {
 
         if (!taskRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+
+        // Set lastModifiedDate only if not provided by client
+        if (task.getLastModifiedDate() == null) {
+            task.setLastModifiedDate(Instant.now());
         }
 
         Optional<Task> result = taskService.partialUpdate(task);

@@ -1,0 +1,346 @@
+/* ==========================================================================
+Task Form Styles
+========================================================================== */
+
+.task-form-container {
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 200px);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+  .task-form-card {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+      background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+      border: none;
+      padding: 2rem;
+
+      h2 {
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+    }
+
+    .card-body {
+      background: white;
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        .form-label {
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: #2c3e50;
+          margin-bottom: 0.75rem;
+        }
+
+        .form-control,
+        .form-select {
+          border-radius: 0.75rem;
+          border: 2px solid #e9ecef;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.1);
+            transform: translateY(-1px);
+          }
+
+          &.form-control-lg {
+            padding: 1rem 1.25rem;
+            font-size: 1.1rem;
+          }
+        }
+
+        textarea.form-control {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        .form-text {
+          font-size: 0.875rem;
+          color: #6c757d;
+          margin-top: 0.5rem;
+          padding-left: 0.25rem;
+        }
+
+        .invalid-feedback {
+          display: block;
+          font-size: 0.875rem;
+          color: #dc3545;
+          margin-top: 0.5rem;
+          padding-left: 0.25rem;
+        }
+      }
+
+      .form-check {
+        .form-check-input {
+          transform: scale(1.2);
+          margin-right: 0.75rem;
+
+          &:checked {
+            background-color: #28a745;
+            border-color: #28a745;
+          }
+        }
+
+        .form-check-label {
+          font-weight: 500;
+          color: #2c3e50;
+        }
+      }
+
+      .btn {
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+
+        &.btn-primary {
+          background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+          border: none;
+
+          &:hover:not(:disabled) {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
+        }
+
+        &.btn-secondary {
+          background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+          border: none;
+          color: white;
+
+          &:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.3);
+          }
+        }
+
+        &.rounded-pill {
+          border-radius: 2rem;
+        }
+
+        .spinner-border-sm {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .text-center.py-5 {
+    .text-muted {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* Priority Selection Styling */
+.form-select option {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Custom animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-form-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Validation states */
+.form-control,
+.form-select {
+  &.is-valid {
+    border-color: #28a745;
+
+    &:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.1);
+    }
+  }
+
+  &.is-invalid {
+    border-color: #dc3545;
+
+    &:focus {
+      border-color: #dc3545;
+      box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.1);
+    }
+  }
+}
+
+/* Focus states for better accessibility */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.btn:focus {
+  outline: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-form-container {
+    padding: 1rem 0.5rem;
+
+    .task-form-card {
+      .card-header {
+        padding: 1.5rem;
+        text-align: center;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+
+      .card-body {
+        padding: 1.5rem;
+
+        .form-group {
+          margin-bottom: 1.25rem;
+
+          .form-label {
+            font-size: 1rem;
+          }
+
+          .form-control,
+          .form-select {
+            &.form-control-lg {
+              padding: 0.875rem 1rem;
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .d-flex.justify-content-between {
+          flex-direction: column;
+          gap: 1rem;
+
+          .btn {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .task-form-container {
+    .task-form-card {
+      border-radius: 1rem;
+      margin: 0.5rem;
+
+      .card-header {
+        padding: 1rem;
+
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
+
+      .card-body {
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .task-form-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 100%);
+
+    .task-form-card {
+      .card-body {
+        background: #2d2d30;
+        color: #ffffff;
+
+        .form-label {
+          color: #ffffff;
+        }
+
+        .form-control,
+        .form-select {
+          background: #404040;
+          border-color: #555555;
+          color: #ffffff;
+
+          &:focus {
+            background: #404040;
+            border-color: #007bff;
+          }
+
+          &::placeholder {
+            color: #aaaaaa;
+          }
+        }
+
+        .form-text {
+          color: #aaaaaa;
+        }
+      }
+    }
+  }
+}
+
+/* Loading state */
+.task-form-container.loading {
+  .task-form-card {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+/* Success state animation */
+@keyframes success {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.task-form-card.success {
+  animation: success 0.3s ease-in-out;
+}
