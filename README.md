@@ -193,6 +193,40 @@ sonar.password=admin
 
 For more information, refer to the [Code quality page][].
 
+# Personal Budget Tracker - Docker Setup
+
+## Prerequisites
+
+- Docker installed
+- Docker Compose installed
+
+## Step-by-Step Instructions
+
+### Step 1: Build the Docker Image
+```bash
+npm run java:docker
+```
+
+### Step 2: Build and Package the Application
+```bash
+./mvnw package -Pprod verify jib:dockerBuild
+```
+
+### Step 3: Start the Application
+```bash
+docker-compose -f src/main/docker/app.yml up
+```
+
+## Access the Application
+
+- **Application**: http://localhost:8080
+
+## Stop the Application
+```bash
+docker-compose -f src/main/docker/app.yml down
+```
+
+
 ### Docker Compose support
 
 JHipster generates a number of Docker Compose configuration files in the [src/main/docker/](src/main/docker/) folder to launch required third party services.
