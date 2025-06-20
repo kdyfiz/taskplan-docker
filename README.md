@@ -120,7 +120,38 @@ JHipster Control Center can help you manage and control your application(s). You
 ```
 docker compose -f src/main/docker/jhipster-control-center.yml up
 ```
+# Docker Setup
 
+## Prerequisites
+
+- Docker installed
+- Docker Compose installed
+
+## Step-by-Step Instructions
+
+### Step 1: Build the Docker Image
+```bash
+npm run java:docker
+```
+
+### Step 2: Build and Package the Application
+```bash
+./mvnw package -Pprod verify jib:dockerBuild
+```
+
+### Step 3: Start the Application
+```bash
+docker-compose -f src/main/docker/app.yml up
+```
+
+## Access the Application
+
+- **Application**: http://localhost:8080
+
+## Stop the Application
+```bash
+docker-compose -f src/main/docker/app.yml down
+```
 ## Testing
 
 ### Spring Boot tests
@@ -192,40 +223,6 @@ sonar.password=admin
 ```
 
 For more information, refer to the [Code quality page][].
-
-# Personal Budget Tracker - Docker Setup
-
-## Prerequisites
-
-- Docker installed
-- Docker Compose installed
-
-## Step-by-Step Instructions
-
-### Step 1: Build the Docker Image
-```bash
-npm run java:docker
-```
-
-### Step 2: Build and Package the Application
-```bash
-./mvnw package -Pprod verify jib:dockerBuild
-```
-
-### Step 3: Start the Application
-```bash
-docker-compose -f src/main/docker/app.yml up
-```
-
-## Access the Application
-
-- **Application**: http://localhost:8080
-
-## Stop the Application
-```bash
-docker-compose -f src/main/docker/app.yml down
-```
-
 
 ### Docker Compose support
 
